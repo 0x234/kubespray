@@ -28,7 +28,7 @@ KUBELET_HOSTNAME="--hostname-override={{ ansible_hostname }}"
 {% set kubelet_args_dns %}{{ kubelet_args_cluster_dns }} --cluster-domain={{ dns_domain }} --resolv-conf={{ kube_resolv_conf }}{% endset %}
 
 {# Location of the apiserver #}
-{% set kubelet_args_kubeconfig %}--kubeconfig={{ kube_config_dir}}/node-kubeconfig.yaml --require-kubeconfig{% endset %}
+{% set kubelet_args_kubeconfig %}--kubeconfig={{ kube_config_dir}}/node-kubeconfig.yaml --require-kubeconfig={% endset %}
 {% if standalone_kubelet|bool %}
 {# We are on a master-only host. Make the master unschedulable in this case. #}
 {% set kubelet_args_kubeconfig %}{{ kubelet_args_kubeconfig }} --register-schedulable=false{% endset %}
